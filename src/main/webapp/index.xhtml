@@ -1,0 +1,20 @@
+<!-- index.xhtml -->
+<!DOCTYPE html>
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+>
+    <h:head>
+        <title>JSF Counter App</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:outputText value="Count: #{counterBean.count}" />
+            <br />
+            <h:commandButton
+                value="Increment"
+                action="#{counterBean.increment}"
+            />
+        </h:form>
+    </h:body>
+</html>
