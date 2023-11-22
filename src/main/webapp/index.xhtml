@@ -3,18 +3,67 @@
 <html
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
 >
     <h:head>
         <title>JSF Counter App</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.css"
+        />
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.js"
+        ></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/mode/javascript/javascript.js"
+        ></script>
     </h:head>
     <h:body>
-        <h:form>
-            <h:outputText value="Count: #{counterBean.count}" />
-            <br />
-            <h:commandButton
-                value="Increment"
-                action="#{counterBean.increment}"
-            />
+        <h:dataTable value="#{facesBean.faces}" var="face">
+            <h:column>
+                <h:form>
+                    <a href="#{face}">#{face}</a>
+                    <h:commandButton
+                        value="Edit"
+                        action="#{facesBean.selectFace(face)}"
+                    />
+                </h:form>
+            </h:column>
+        </h:dataTable>
+
+        <h:form prependId="false">
+            <div class="new-face-form">
+                <p>New Face name:</p>
+                <h:inputText value="#{facesBean.newFaceName}" />
+                <p>New Face content:</p>
+                <textarea id="editor" onchange="updateHiddenInput()">
+#{facesBean.newFaceContent}</textarea
+                >
+                <h:inputHidden
+                    id="newFaceContent"
+                    value="#{facesBean.newFaceContent}"
+                >
+                </h:inputHidden>
+                <h:commandButton value="Add" action="#{facesBean.addFace}" />
+            </div>
         </h:form>
     </h:body>
+
+    <script>
+        var editor = CodeMirror.fromTextArea(
+            document.getElementById("editor"),
+            {
+                lineNumbers: true,
+                mode: "html",
+            }
+        );
+
+        editor.on("change", function () {
+            updateHiddenInput();
+        });
+
+        function updateHiddenInput() {
+            document.getElementById("newFaceContent").value = editor.getValue();
+        }
+    </script>
 </html>

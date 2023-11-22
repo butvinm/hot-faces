@@ -34,6 +34,7 @@ public class FacesLoader extends ResourceHandlerWrapper {
     }
 
     private FaceResource loadFaceResource(String resourceName) {
+        resourceName = FacesStorage.normalizeFaceName(resourceName);
         val content = storage.getFaceContent(resourceName);
         if (content.isEmpty()) {
             return null;

@@ -8,7 +8,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-/* From Mojarra */
+/* From Mojarra source code. */
 @Getter
 @Setter
 @RequiredArgsConstructor
