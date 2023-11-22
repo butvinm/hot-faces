@@ -6,6 +6,7 @@ services:
       MONGODB_DATABASE: faces_db
     ports:
       - "8080:8080"
+      - "8787:8787"
     depends_on:
       - mongodb
     networks:
