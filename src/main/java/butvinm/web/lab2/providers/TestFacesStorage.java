@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.Optional;
 
 import butvinm.web.lab2.FacesStorage;
-import jakarta.enterprise.context.ApplicationScoped;
 
 
 public class TestFacesStorage implements FacesStorage {

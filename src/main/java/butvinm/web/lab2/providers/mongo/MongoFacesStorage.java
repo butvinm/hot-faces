@@ -14,9 +14,11 @@ import com.mongodb.client.model.UpdateOptions;
 import com.mongodb.client.model.Updates;
 
 import butvinm.web.lab2.FacesStorage;
+import jakarta.enterprise.context.ApplicationScoped;
 import lombok.NonNull;
 import lombok.val;
 
+@ApplicationScoped
 public class MongoFacesStorage implements FacesStorage, Closeable {
     private final static String COLLECTION_NAME = "collisions";
 
