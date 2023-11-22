@@ -1,0 +1,28 @@
+services:
+  webapp:
+    build: .
+    environment:
+      MONGODB_URL: mongodb://mongodb:27017
+      MONGODB_DATABASE: faces_db
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongodb
+    networks:
+      - webapp-network
+
+  mongodb:
+    image: mongo:6-jammy
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - webapp-network
+
+volumes:
+  mongodb_data:
+
+networks:
+  webapp-network:
+    driver: bridge
